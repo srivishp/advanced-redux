@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { uiActions } from "./store/uiSlice";
+import { sendCartData } from "./store/cartSlice";
 import Notification from "./components/UI/Notification";
 import Cart from "./components/Cart/Cart";
 import Layout from "./components/Layout/Layout";
@@ -24,48 +24,8 @@ function App() {
       renderingForTheFirstTime = false;
       return;
     }
-    const sendCartData = async () => {
-      //An action creator is a function that literally creates an action object.
-      // In Redux, action creators simply return an action object and pass the argument value if necessary.
-      // This is an action-creator automatically created by redux toolkit
-      dispatch(
-        uiActions.showNotification({
-          status: "pending",
-          title: "Sending...",
-          message: "Uploading cart data",
-        })
-      );
-      const response = await fetch(
-        "https://react-js-practice-39f83-default-rtdb.asia-southeast1.firebasedatabase.app/cart.json",
-        {
-          // PUT to overwrite existing data
-          method: "PUT",
-          body: JSON.stringify(cart),
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Data upload failed!");
-      }
-      dispatch(
-        uiActions.showNotification({
-          status: "success",
-          title: "Success!",
-          message: "Data uploaded successfully",
-        })
-      );
-    };
 
-    // async functions return a promise, so we can use catch() on them
-    sendCartData().catch((error) => {
-      dispatch(
-        uiActions.showNotification({
-          status: "error",
-          title: "Error!",
-          message: "Upload failed!",
-        })
-      );
-    });
+    dispatch(sendCartData(cart));
   }, [cart, dispatch]);
 
   return (
