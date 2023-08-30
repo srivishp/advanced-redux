@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { sendCartData } from "./store/cartSlice";
+import { fetchCartData, sendCartData } from "./store/cartActions";
 import Notification from "./components/UI/Notification";
 import Cart from "./components/Cart/Cart";
 import Layout from "./components/Layout/Layout";
@@ -24,9 +24,14 @@ function App() {
       renderingForTheFirstTime = false;
       return;
     }
-
-    dispatch(sendCartData(cart));
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
   }, [cart, dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
 
   return (
     <>
