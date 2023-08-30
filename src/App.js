@@ -25,6 +25,9 @@ function App() {
       return;
     }
     const sendCartData = async () => {
+      //An action creator is a function that literally creates an action object.
+      // In Redux, action creators simply return an action object and pass the argument value if necessary.
+      // This is an action-creator automatically created by redux toolkit
       dispatch(
         uiActions.showNotification({
           status: "pending",
