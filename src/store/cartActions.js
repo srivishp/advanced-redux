@@ -11,8 +11,8 @@ BUT, we wanna keep our component clean and tidy. So we are writing it in a separ
   * Rather than execute some logic now, we can write a function body or code that can be used to perform the work later.
     Action creators as Thunks can also (in most cases) return other functions as actions
 
-# This Thunk is written separately so that redux does the heavy lifting, and it doesn't mind doing it.
-* Redux toolkit was also made with this purpose in mind.
+? This Thunk is written separately so that redux does the heavy lifting, and it doesn't mind doing it.
+ Redux toolkit was also made with this purpose in mind.
 
 */
 
