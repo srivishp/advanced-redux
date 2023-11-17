@@ -17,7 +17,8 @@ function App() {
   const notification = useSelector((state) => state.ui.notification);
   const dispatch = useDispatch();
 
-  //todo: Always have a fat Reducer (all the synchronous code and data processing must be done in the reducer)
+  //-> Always have a fat Reducer
+  //# all the synchronous code and data processing must be done in the reducer
   // * Side effects must be handled after redux processes the data
   useEffect(() => {
     if (renderingForTheFirstTime) {
